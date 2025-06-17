@@ -29,10 +29,3 @@ jobs:
           SS_CUSTOMER_NUMBER: ${{ secrets.SS_CUSTOMER_NUMBER }}
           SS_SOURCE: ${{ secrets.SS_SOURCE }}
         run: node src/sync.js
-
-      - name: Upload CSV artifact
-        if: success()
-        uses: actions/upload-artifact@v3
-        with:
-          name: volusion-upload
-          path: volusion-upload.csv
