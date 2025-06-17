@@ -1,7 +1,7 @@
 name: Scheduled Stock Sync
 
 on:
-  # Every 15 minutes:
+  # Every 5 minutes:
   schedule:
     - cron: '*/5 * * * *' # run every 5 minutes
   # Allow manual runs:
