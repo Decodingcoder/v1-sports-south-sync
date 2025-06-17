@@ -13,7 +13,7 @@ const {
 
 async function fetchSportsSouthInventory(sinceIso = '1990-01-01T00:00:00Z') {
   if (!SPORTS_SOUTH_USERNAME || !SPORTS_SOUTH_PASSWORD || !SPORTS_SOUTH_CUSTOMER_NUMBER || !SPORTS_SOUTH_SOURCE) {
-    throw new Error('Missing one or more required Sports South credentials in environment variables.');
+    throw new Error('❌ Missing one or more required Sports South credentials in environment variables.');
   }
 
   const resp = await axios.get(`${WS_BASE}/inventory.asmx/IncrementalOnhandUpdate`, {
@@ -27,8 +27,9 @@ async function fetchSportsSouthInventory(sinceIso = '1990-01-01T00:00:00Z') {
     headers: { 'Accept': 'text/xml' }
   });
 
-  const outer = await xml2js.parseStringPromise(resp.data, { explicitArray: false });
-  const items = outer?.Envelope?.Body?.IncrementalOnhandUpdateResponse?.IncrementalOnhandUpdateResult?.Inventory?.Item;
+  const parsed = await xml2js.parseStringPromise(resp.data, { explicitArray: false });
+
+  const items = parsed?.Envelope?.Body?.IncrementalOnhandUpdateResponse?.IncrementalOnhandUpdateResult?.Inventory?.Item;
 
   return items ? (Array.isArray(items) ? items : [items]) : [];
 }
