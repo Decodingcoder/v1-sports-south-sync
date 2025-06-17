@@ -1,31 +1,58 @@
 name: Scheduled Stock Sync
 
 on:
-  # runs every 5 minutes
+  # Every 15 minutes:
   schedule:
-    - cron: '*/5 * * * *'
-  # also allow manual trigger
+    - cron: '*/15 * * * *'
+  # Allow manual runs:
   workflow_dispatch:
+
+permissions:
+  contents: write   # allow pushing commits
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v4
+      # 1) Checkout code
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      # 2) Install Node 18
+      - uses: actions/setup-node@v3
         with:
-          node-version: '18'      # or your preferred LTS
+          node-version: '18'
 
+      # 3) Install deps
       - name: Install dependencies
         run: npm ci
 
-      - name: Run the sync
-        env:
-          SS_USERNAME: ${{ secrets.SS_USERNAME }}
-          SS_PASSWORD: ${{ secrets.SS_PASSWORD }}
-          SS_CUSTOMER_NUMBER: ${{ secrets.SS_CUSTOMER_NUMBER }}
-          SS_SOURCE: ${{ secrets.SS_SOURCE }}
+      # 4) Run your sync script
+      - name: Run sync
         run: node src/sync.js
+
+      # 5) Configure Git user (so commit has an author)
+      - name: Configure Git for push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # 6) Commit & push CSV if it changed
+      - name: Commit and push CSV
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: github-actions[bot]
+          author_email: github-actions[bot]@users.noreply.github.com
+          message: "chore: update volusion-upload.csv"
+          add: 'volusion-upload.csv'
+          push: true
+
+      # 7) (Optional) upload to Volusion’s import endpoint
+      - name: Upload CSV to Volusion
+        if: ${{ secrets.VOLUSION_IMPORT_URL && secrets.VOLUSION_API_KEY }}
+        env:
+          IMPORT_URL: ${{ secrets.VOLUSION_IMPORT_URL }}
+          API_KEY:   ${{ secrets.VOLUSION_API_KEY }}
+        run: |
+          curl -X POST "$IMPORT_URL" \
+            -H "Authorization: Bearer $API_KEY" \
+            -F "file=@volusion-upload.csv"
