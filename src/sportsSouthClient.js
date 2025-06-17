@@ -27,6 +27,11 @@ async function fetchSportsSouthInventory(sinceIso = '1990-01-01T00:00:00Z') {
     headers: { 'Accept': 'text/xml' }
   });
 
+  // This line to inspect raw XML
+  console.log('📩 Raw Sports South XML:', resp.data.slice(0, 500)); // just first 500 chars
+
+  const outer = await xml2js.parseStringPromise(resp.data, { explicitArray: false });
+
   const parsed = await xml2js.parseStringPromise(resp.data, { explicitArray: false });
 
   const items = parsed?.Envelope?.Body?.IncrementalOnhandUpdateResponse?.IncrementalOnhandUpdateResult?.Inventory?.Item;
