@@ -28,6 +28,11 @@ jobs:
 
       # 4) Run your sync script
       - name: Run sync
+        env:
+          SPORTS_SOUTH_USERNAME: ${{ secrets.SPORTS_SOUTH_USERNAME }}
+          SPORTS_SOUTH_PASSWORD: ${{ secrets.SPORTS_SOUTH_PASSWORD }}
+          SPORTS_SOUTH_CUSTOMER_NUMBER: ${{ secrets.SPORTS_SOUTH_CUSTOMER_NUMBER }}
+          SPORTS_SOUTH_SOURCE: ${{ secrets.SPORTS_SOUTH_SOURCE }}
         run: node src/sync.js
 
       # 5) Configure Git user (so commit has an author)
