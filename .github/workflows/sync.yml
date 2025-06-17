@@ -3,7 +3,7 @@ name: Scheduled Stock Sync
 on:
   # Every 15 minutes:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/5 * * * *' # run every 5 minutes
   # Allow manual runs:
   workflow_dispatch:
 
@@ -51,8 +51,6 @@ jobs:
         if: ${{ secrets.VOLUSION_IMPORT_URL && secrets.VOLUSION_API_KEY }}
         env:
           IMPORT_URL: ${{ secrets.VOLUSION_IMPORT_URL }}
-          API_KEY:   ${{ secrets.VOLUSION_API_KEY }}
         run: |
           curl -X POST "$IMPORT_URL" \
-            -H "Authorization: Bearer $API_KEY" \
             -F "file=@volusion-upload.csv"
