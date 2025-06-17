@@ -47,8 +47,7 @@ jobs:
           push: true
 
       # 7) (Optional) upload to Volusion’s import endpoint
-      - name: Upload CSV to Volusion
-        if: ${{ secrets.VOLUSION_IMPORT_URL && secrets.VOLUSION_API_KEY }}
+      - name: Upload latest CSV to Volusion via Import URL
         env:
           IMPORT_URL: ${{ secrets.VOLUSION_IMPORT_URL }}
         run: |
