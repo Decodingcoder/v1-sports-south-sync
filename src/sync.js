@@ -29,18 +29,15 @@ if (fs.existsSync(lastSyncPath)) {
     return;
   }
 
-  // 🔍 DEBUG: Inspect one item
-  console.log('🔎 First inventory item sample:');
-  console.log(JSON.stringify(ssInventory[0], null, 2));
+  console.log('🔍 Sample item:', JSON.stringify(ssInventory[0], null, 2));
 
   // 3) Build updates
   const updates = ssInventory.map(item => {
-    const productCode = item.ItemNo;
-    const quantity = parseFloat(item.Quantity);
+    const productCode = item.ItemNumber;
+    const quantity = parseFloat(item.QtyOnHand);
 
-    // 🔍 DEBUG: Log any missing fields
     if (!productCode || isNaN(quantity)) {
-      console.warn('⚠️ Skipping item with missing ItemNo or Quantity:', item);
+      console.warn('⚠️ Skipping item with missing ItemNumber or QtyOnHand:', item);
       return null;
     }
 
@@ -50,9 +47,11 @@ if (fs.existsSync(lastSyncPath)) {
     };
   }).filter(Boolean); // Remove nulls
 
+  console.log(`🧮 ${updates.length} valid inventory items after filtering.`);
+
   // 4) Write CSV
   const csvPath = path.resolve(__dirname, '../volusion-upload.csv');
-  const csv = generateVolusionCSV(updates); // must return a string
+  const csv = generateVolusionCSV(updates);
   fs.writeFileSync(csvPath, csv, 'utf8');
   console.log(`📦 Wrote ${updates.length} rows to volusion-upload.csv`);
 
