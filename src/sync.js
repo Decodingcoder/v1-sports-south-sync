@@ -1,6 +1,4 @@
 // src/sync.js
-console.log(ssInventory);
-
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
@@ -31,11 +29,26 @@ if (fs.existsSync(lastSyncPath)) {
     return;
   }
 
+  // 🔍 DEBUG: Inspect one item
+  console.log('🔎 First inventory item sample:');
+  console.log(JSON.stringify(ssInventory[0], null, 2));
+
   // 3) Build updates
-  const updates = ssInventory.map(item => ({
-    ProductCode: item.ItemNo,
-    StockStatus: item.Quantity > 0 ? 'In Stock' : 'Out of Stock'
-  }));
+  const updates = ssInventory.map(item => {
+    const productCode = item.ItemNo;
+    const quantity = parseFloat(item.Quantity);
+
+    // 🔍 DEBUG: Log any missing fields
+    if (!productCode || isNaN(quantity)) {
+      console.warn('⚠️ Skipping item with missing ItemNo or Quantity:', item);
+      return null;
+    }
+
+    return {
+      ProductCode: productCode,
+      StockStatus: quantity > 0 ? 'In Stock' : 'Out of Stock'
+    };
+  }).filter(Boolean); // Remove nulls
 
   // 4) Write CSV
   const csvPath = path.resolve(__dirname, '../volusion-upload.csv');
