@@ -27,11 +27,26 @@ async function fetchSportsSouthInventory(sinceIso = '1990-01-01T00:00:00Z') {
     headers: { 'Accept': 'text/xml' }
   });
 
-  // This line to inspect raw XML
+  // Debug log
   console.log('📩 Raw response:', resp.data);
 
   if (resp.data.includes('Authentication Failed')) {
     throw new Error('❌ Sports South API authentication failed. Check your username/password/customer number/source values.');
+  }
+
+  // Attempt to parse full XML (even if wrapped in <string>)
+  const parsed = await xml2js.parseStringPromise(resp.data, { explicitArray: false });
+
+  const rawXml = parsed?.string?._ ?? '';
+  if (!rawXml) {
+    console.warn('⚠️ No inner XML returned in <string> wrapper.');
+    return [];
+  }
+
+  const unwrapped = await xml2js.parseStringPromise(rawXml, { explicitArray: false });
+  const items = unwrapped?.NewDataSet?.Table1;
+
+  return items ? (Array.isArray(items) ? items : [items]) : [];
 }
 
 module.exports = { fetchSportsSouthInventory };
