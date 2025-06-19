@@ -33,11 +33,11 @@ if (fs.existsSync(lastSyncPath)) {
 
   // 3) Build updates
   const updates = ssInventory.map(item => {
-    const productCode = item.ItemNumber;
-    const quantity = parseFloat(item.QtyOnHand);
+    const productCode = item.ItemNo;
+    const quantity = parseFloat(item.Quantity);
 
     if (!productCode || isNaN(quantity)) {
-      console.warn('⚠️ Skipping item with missing ItemNumber or QtyOnHand:', item);
+      console.warn('⚠️ Skipping item with missing ItemNo or Quantity:', item);
       return null;
     }
 
@@ -45,7 +45,7 @@ if (fs.existsSync(lastSyncPath)) {
       ProductCode: productCode,
       StockStatus: quantity > 0 ? 'In Stock' : 'Out of Stock'
     };
-  }).filter(Boolean); // Remove nulls
+  }).filter(Boolean);
 
   console.log(`🧮 ${updates.length} valid inventory items after filtering.`);
 
