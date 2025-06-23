@@ -54,7 +54,7 @@ jobs:
       # 7) (Optional) upload to Volusion’s import endpoint
       - name: Upload latest CSV to Volusion via Import URL
         env:
-          VOLUSION_IMPORT_URL: ${{ secrets.VOLUSION_IMPORT_URL }}
+         IMPORT_URL: ${{ secrets.VOLUSION_IMPORT_URL }}
         run: |
           curl -X POST "$IMPORT_URL" \
             -F "file=@volusion-upload.csv"
