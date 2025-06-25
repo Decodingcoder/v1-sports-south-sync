@@ -4,7 +4,7 @@ const fs   = require('fs');
 const path = require('path');
 
 const { fetchSportsSouthInventory } = require('./sportsSouthClient');
-const { fetchHicksIncInventory }    = require('./hicksIncClient');
+const { fetchHicksInventory } = require('./hicksIncClient');
 const { generateVolusionCSV }        = require('./generateCSV');
 
 const lastSyncPath = path.resolve(__dirname, '../lastSync.json');
