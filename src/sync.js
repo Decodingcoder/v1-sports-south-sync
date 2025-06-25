@@ -26,6 +26,7 @@ if (fs.existsSync(lastSyncPath)) {
 
   if (!ssInventory || ssInventory.length === 0) {
     console.log('⚠️ No inventory returned. Exiting early.');
+    console.log('📦 Full response body for debugging:', JSON.stringify(ssInventory, null, 2));
     return;
   }
 
