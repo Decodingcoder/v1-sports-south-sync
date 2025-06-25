@@ -1,29 +1,50 @@
-// src/hicksIncClient.js
+// src/hicksClient.js
 require('dotenv').config();
-const axios = require('axios');
-const xml2js = require('xml2js');
+const ftp = require('basic-ftp');
+const fs = require('fs');
+const path = require('path');
+const csv = require('csv-parser');
 
-const {
-  HICKS_INC_API_URL,      // e.g. https://api.hicksinc.com/inventory
-  HICKS_INC_API_KEY       // whatever auth they require
-} = process.env;
+async function fetchHicksInventory() {
+  const client = new ftp.Client();
+  client.ftp.verbose = false;
 
-async function fetchHicksIncInventory(sinceIso) {
-  if (!HICKS_INC_API_URL || !HICKS_INC_API_KEY) {
-    throw new Error('Missing HICKS_INC_API_URL or HICKS_INC_API_KEY in env');
+  const localFile = path.resolve(__dirname, '../tmp/hicks-full.csv');
+
+  try {
+    await client.access({
+      host: process.env.HICKS_FTP_HOST,
+      user: process.env.HICKS_FTP_USER,
+      password: process.env.HICKS_FTP_PASS,
+      secure: false,
+    });
+
+    await client.downloadTo(localFile, 'full_v2.csv');
+    await client.close();
+
+    const items = [];
+
+    return new Promise((resolve, reject) => {
+      fs.createReadStream(localFile)
+        .pipe(csv())
+        .on('data', (row) => {
+          const productCode = row['ItemNo'];
+          const qty = parseFloat(row['QtyOnHand']);
+
+          if (!productCode || isNaN(qty)) return;
+          items.push({
+            ProductCode: productCode,
+            StockStatus: qty > 0 ? 'In Stock' : 'Out of Stock'
+          });
+        })
+        .on('end', () => resolve(items))
+        .on('error', reject);
+    });
+
+  } catch (err) {
+    console.error('❌ Failed to fetch Hicks inventory:', err);
+    return [];
   }
-
-  const resp = await axios.get(HICKS_INC_API_URL, {
-    params: { since: sinceIso },
-    headers: { 
-      'Authorization': `Bearer ${HICKS_INC_API_KEY}`,
-      'Accept': 'application/json'
-    }
-  });
-
-  // assume JSON: [ { sku: 'ABC123', onHand: 42 }, … ]
-  return Array.isArray(resp.data) ? resp.data : [];
 }
 
-module.exports = { fetchHicksIncInventory };
-
+module.exports = { fetchHicksInventory };
