@@ -23,14 +23,14 @@ if (fs.existsSync(lastSyncPath)) {
   console.log(`⏳ Fetching Sports South inventory...`);
   const ssInventory = await fetchSportsSouthInventory(lastSyncIso);
   console.log(`✅ Fetched ${ssInventory.length} Sports South items.`);
+  console.log(`🔍 Type of result:`, typeof ssInventory);
+  console.log(`🔍 Sample item:`, JSON.stringify(ssInventory?.[0], null, 2));
 
   if (!ssInventory || ssInventory.length === 0) {
     console.log('⚠️ No inventory returned. Exiting early.');
     console.log('📦 Full response body for debugging:', JSON.stringify(ssInventory, null, 2));
     return;
   }
-
-  console.log('🔍 Sample item:', JSON.stringify(ssInventory[0], null, 2));
 
   // 3) Build updates
   const updates = ssInventory.map(item => {
