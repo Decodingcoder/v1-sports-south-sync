@@ -1,2 +1,3 @@
-// Force full inventory pull
-const sinceIso = '1990-01-01T00:00:00Z'; // full sync
+{
+  "since": "1990-01-01T00:00:00Z"
+}
