@@ -1,4 +1,4 @@
-// src/hicksClient.js
+// src/hicksIncClient.js
 require('dotenv').config();
 const ftp = require('basic-ftp');
 const fs = require('fs');
@@ -33,10 +33,12 @@ async function fetchHicksInventory() {
       skip_empty_lines: true
     });
 
+    // Normalize result to match sync.js expectations
     return records.map(row => ({
-      ProductCode: row.ItemNo,
-      StockStatus: parseFloat(row.QtyOnHand) > 0 ? 'In Stock' : 'Out of Stock'
-    })).filter(r => r.ProductCode);
+      sku: row.ItemNo,
+      onHand: parseFloat(row.QtyOnHand)
+    })).filter(r => r.sku);
+    
   } catch (err) {
     console.error('❌ Failed to fetch Hicks inventory:', err.message);
     return [];
