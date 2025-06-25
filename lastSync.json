@@ -1,3 +1,2 @@
-{
-  "since": "1990-06-16T04:56:04.571Z"
-}
+// Force full inventory pull
+const sinceIso = '1990-01-01T00:00:00Z'; // full sync
