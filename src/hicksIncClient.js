@@ -3,47 +3,45 @@ require('dotenv').config();
 const ftp = require('basic-ftp');
 const fs = require('fs');
 const path = require('path');
-const csv = require('csv-parser');
+const parse = require('csv-parse/sync').parse;
+
+const {
+  HICKS_FTP_HOST,
+  HICKS_FTP_USER,
+  HICKS_FTP_PASS
+} = process.env;
 
 async function fetchHicksInventory() {
   const client = new ftp.Client();
   client.ftp.verbose = false;
 
-  const localFile = path.resolve(__dirname, '../tmp/hicks-full.csv');
-
   try {
     await client.access({
-      host: process.env.HICKS_FTP_HOST,
-      user: process.env.HICKS_FTP_USER,
-      password: process.env.HICKS_FTP_PASS,
-      secure: false,
+      host: HICKS_FTP_HOST,
+      user: HICKS_FTP_USER,
+      password: HICKS_FTP_PASS,
+      port: 21,
+      secure: false
     });
 
-    await client.downloadTo(localFile, 'full_v2.csv');
-    await client.close();
+    const tempFile = path.resolve(__dirname, '../tmp/hicks-full.csv');
+    await client.downloadTo(tempFile, '/fh/full_v2.csv');
 
-    const items = [];
-
-    return new Promise((resolve, reject) => {
-      fs.createReadStream(localFile)
-        .pipe(csv())
-        .on('data', (row) => {
-          const productCode = row['ItemNo'];
-          const qty = parseFloat(row['QtyOnHand']);
-
-          if (!productCode || isNaN(qty)) return;
-          items.push({
-            ProductCode: productCode,
-            StockStatus: qty > 0 ? 'In Stock' : 'Out of Stock'
-          });
-        })
-        .on('end', () => resolve(items))
-        .on('error', reject);
+    const fileContent = fs.readFileSync(tempFile, 'utf8');
+    const records = parse(fileContent, {
+      columns: true,
+      skip_empty_lines: true
     });
 
+    return records.map(row => ({
+      ProductCode: row.ItemNo,
+      StockStatus: parseFloat(row.QtyOnHand) > 0 ? 'In Stock' : 'Out of Stock'
+    })).filter(r => r.ProductCode);
   } catch (err) {
-    console.error('❌ Failed to fetch Hicks inventory:', err);
+    console.error('❌ Failed to fetch Hicks inventory:', err.message);
     return [];
+  } finally {
+    client.close();
   }
 }
 
