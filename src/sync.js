@@ -54,9 +54,7 @@ if (fs.existsSync(lastSyncPath)) {
 
   // 5) Write CSV
   const csvPath = path.resolve(__dirname, '../volusion-upload.csv');
-  const csv = generateVolusionCSV(updates);
-  fs.writeFileSync(csvPath, csv);
-  console.log(`📦 Wrote ${updates.length} rows to volusion-upload.csv`);
+  await generateVolusionCSV(updates, csvPath);
 
   // 6) Update lastSync
   fs.writeFileSync(lastSyncPath,
