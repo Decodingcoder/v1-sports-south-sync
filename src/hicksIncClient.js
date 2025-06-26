@@ -29,6 +29,7 @@ async function fetchHicksInventory() {
       password: HICKS_FTP_PASS,
       port: 21,
       secure: false
+      passive: true  // 👈 Force passive mode
     });
 
     // 🧪 Log root files
