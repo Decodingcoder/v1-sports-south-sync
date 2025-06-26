@@ -31,8 +31,18 @@ async function fetchHicksInventory() {
       secure: false
     });
 
-    const tempFile = path.resolve(__dirname, '../tmp/hicks-full.csv');
-    await client.downloadTo(tempFile, '/fh/full_v2.csv');
+    // 🧪 Log root files
+    console.log('📂 Root files:', await client.list('/'));
+
+    // 🧪 Log files inside /fh
+    try {
+      console.log('📂 /fh directory contents:', await client.list('/fh'));
+    } catch (err) {
+      console.error('⚠️ Could not list /fh directory:', err.message);
+    }
+
+    // Skip downloading for now
+    return [];
 
     const fileContent = fs.readFileSync(tempFile, 'utf8');
     const records = parse(fileContent, {
