@@ -24,6 +24,8 @@ async function fetchHicksInventory() {
       secure: false
     });
 
+    console.log(`🔌 Connected to Hicks FTP at ${HICKS_FTP_HOST}`);
+
     const tempFile = path.resolve(__dirname, '../tmp/hicks-full.csv');
     await client.downloadTo(tempFile, '/fh/full_v2.csv');
 
