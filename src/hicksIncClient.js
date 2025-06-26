@@ -1,4 +1,11 @@
 // src/hicksIncClient.js
+
+console.log('🔍 FTP ENV:', {
+  host: HICKS_FTP_HOST,
+  user: HICKS_FTP_USER,
+  pass: HICKS_FTP_PASS ? '***' : undefined 
+    });
+
 require('dotenv').config();
 const ftp = require('basic-ftp');
 const fs = require('fs');
