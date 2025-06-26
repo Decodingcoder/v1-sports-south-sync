@@ -11,6 +11,8 @@ const {
   HICKS_FTP_PASS
 } = process.env;
 
+console.log(`🔍 Using FTP host: ${HICKS_FTP_HOST}`);
+
 async function fetchHicksInventory() {
   const client = new ftp.Client();
   client.ftp.verbose = false;
