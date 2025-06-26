@@ -28,7 +28,7 @@ async function fetchHicksInventory() {
       user: HICKS_FTP_USER,
       password: HICKS_FTP_PASS,
       port: 21,
-      secure: false
+      secure: false,
       passive: true  // 👈 Force passive mode
     });
 
