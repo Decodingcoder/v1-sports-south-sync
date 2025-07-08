@@ -5,7 +5,7 @@ const path = require('path');
 
 const { fetchSportsSouthInventory } = require('./sportsSouthClient');
 const { fetchHicksInventory } = require('./hicksIncClient');
-const { generateVolusionCSV } = require('./generateCSV');
+const { generateVolusionXML } = require('./generateVolusionXML');
 
 const lastSyncPath = path.resolve(__dirname, '../lastSync.json');
 
@@ -53,8 +53,8 @@ if (fs.existsSync(lastSyncPath)) {
   }));
 
   // 5) Write CSV
-  const csvPath = path.resolve(__dirname, '../volusion-upload.csv');
-  await generateVolusionCSV(updates, csvPath);
+  const xmlPath = path.resolve(__dirname, '../volusion-upload.xml');
+  await generateVolusionXML(updates, xmlPath);
 
   // 6) Update lastSync
   fs.writeFileSync(lastSyncPath,
