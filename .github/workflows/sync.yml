@@ -45,19 +45,19 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       # 6) Commit & push CSV if it changed
-      - name: Commit and push CSV
+      - name: Commit and push XML
         uses: EndBug/add-and-commit@v9
         with:
           author_name: github-actions[bot]
           author_email: github-actions[bot]@users.noreply.github.com
-          message: "chore: update volusion-upload.csv"
-          add: 'volusion-upload.csv'
+          message: "chore: update volusion-upload.xml"
+          add: 'volusion-upload.xml'
           push: true
 
       # 7) (Optional) upload to Volusion’s import endpoint
-      - name: Upload latest CSV to Volusion via Import URL
+      - name: Upload latest XML to Volusion via Import URL
         env:
          IMPORT_URL: ${{ secrets.VOLUSION_IMPORT_URL }}
         run: |
           curl -X POST "$IMPORT_URL" \
-            -F "file=@volusion-upload.csv"
+            -F "file=@volusion-upload.xml"
