@@ -1452,6 +1452,7 @@ ProductCode,StockStatus
 1543201,In Stock
 1543203,In Stock
 1545779,In Stock
+1545891,In Stock
 1546019,In Stock
 1546023,In Stock
 1546024,In Stock
@@ -4013,6 +4014,7 @@ CEFL38-02,In Stock
 CEP032-MX,In Stock
 CFAA4PX,In Stock
 CFE2112-1,In Stock
+CFF602MFB,In Stock
 CFF662MFS,In Stock
 CFF701MFB,In Stock
 CFF701MHFB,In Stock
@@ -4667,6 +4669,7 @@ DA405,In Stock
 DA406,In Stock
 DA407,In Stock
 DA409,In Stock
+DA410,In Stock
 DA412,In Stock
 DA413,In Stock
 DA417,In Stock
@@ -5362,6 +5365,7 @@ FSN-33,In Stock
 FSN-7,In Stock
 FSN-8,In Stock
 FS100NGR,In Stock
+FS1913A-01-SB,In Stock
 FTCRMOCRM71M,In Stock
 FTCRMOCRM71MH,In Stock
 FTFW-1-GP-2U,In Stock
@@ -6777,6 +6781,7 @@ LSCEL75C,In Stock
 LSG1HAMG,In Stock
 LSG1HAMG66MH,In Stock
 LSG1SHAMG,In Stock
+LSG1SHAMG610,In Stock
 LSG1SHLAMG,In Stock
 LSG10A56UL,In Stock
 LSG10A60UL,In Stock
@@ -7043,6 +7048,7 @@ MFA-15007,In Stock
 MFA-15020,In Stock
 MFA-15029,In Stock
 MFA-15031,In Stock
+MFA-15120,In Stock
 MFG-13220,In Stock
 MFG-13264,In Stock
 MFG-13265,Out of Stock
@@ -8328,6 +8334,7 @@ RLS,In Stock
 RL22W201WD,In Stock
 RL22161ST,In Stock
 RL22181SY,In Stock
+RL22181WD-GDH,Out of Stock
 RL22181WD-NBK,In Stock
 RM-30,In Stock
 RM-80-ICS,In Stock
@@ -8653,6 +8660,7 @@ SC600,Out of Stock
 SDF-CR,In Stock
 SDF-100C,In Stock
 SDGX3H,In Stock
+SDGX3HL,In Stock
 SDLB-BLUE,In Stock
 SDLB-RED,In Stock
 SDLSB-0-11,In Stock
@@ -9242,6 +9250,7 @@ SSP-30,In Stock
 SSP-36,In Stock
 SSP-42,In Stock
 SSPN4-590,Out of Stock
+SSPS45-BK,In Stock
 SSP10462ULA,Out of Stock
 SSP20TKY,In Stock
 SSP30702MA,In Stock
@@ -11422,6 +11431,7 @@ Z15TAC16,In Stock
 1-GX4XL941,In Stock
 1-G3B941,In Stock
 1-G3B941G,In Stock
+1-G3B941T,In Stock
 1-G3B949,In Stock
 1-G3B949G,In Stock
 1-G3CP931,In Stock
@@ -11438,7 +11448,7 @@ Z15TAC16,In Stock
 1-G3P941,In Stock
 1-G3XSR9031,In Stock
 1-TH10041,In Stock
-1-TH45041,Out of Stock
+1-TH45041,In Stock
 1-TH9C031,In Stock
 1-TH9041,In Stock
 1-TX2213Y-US3,In Stock
@@ -11720,9 +11730,12 @@ Z15TAC16,In Stock
 2-357081RH,In Stock
 2-440041TKR,In Stock
 2-440049,In Stock
+2-440049TKR,In Stock
 2-440061RH,In Stock
 2-440081RH,In Stock
 2-440085RH,In Stock
+2-441021FDE,In Stock
+2-441021GRY,In Stock
 2-441021PFS,In Stock
 2-441031TC,In Stock
 2-441039MAG,In Stock
@@ -12492,8 +12505,9 @@ Z15TAC16,In Stock
 40XTP25,In Stock
 401.038,In Stock
 404MBK,In Stock
+41-0800,In Stock
 41-1610,Out of Stock
-41-1620,Out of Stock
+41-1620,In Stock
 41-1621,In Stock
 41-1624,In Stock
 41-1628,In Stock
