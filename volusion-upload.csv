@@ -806,7 +806,7 @@ ProductCode,StockStatus
 70587,In Stock
 70588,In Stock
 70802,In Stock
-70803,In Stock
+70803,Out of Stock
 71236,In Stock
 71237,In Stock
 71238,In Stock
@@ -1559,7 +1559,7 @@ ProductCode,StockStatus
 1571364,In Stock
 1580680,In Stock
 1580682,In Stock
-1580683,In Stock
+1580683,Out of Stock
 1580684,In Stock
 1590027,In Stock
 1590069,In Stock
@@ -1589,7 +1589,7 @@ ProductCode,StockStatus
 1598449,In Stock
 1608030,In Stock
 1608033,In Stock
-1608034,In Stock
+1608034,Out of Stock
 1608037,In Stock
 1608038,In Stock
 1608062,In Stock
@@ -5267,12 +5267,12 @@ FJH14-801,In Stock
 FJH14-811,In Stock
 FJH14-844,In Stock
 FJH16-01PK5,Out of Stock
-FJH18-U,In Stock
+FJH18-U,Out of Stock
 FJH18-801,In Stock
 FJH18-844,In Stock
-FJH38-U,In Stock
-FJH38-811,In Stock
-FJH38-844,In Stock
+FJH38-U,Out of Stock
+FJH38-811,Out of Stock
+FJH38-844,Out of Stock
 FKD9,In Stock
 FLASHNG56BC,In Stock
 FLM104,In Stock
@@ -5512,7 +5512,7 @@ GEN5X3,Out of Stock
 GEN7070,In Stock
 GERGGSG16P22,In Stock
 GERGGSG1622G,In Stock
-GERGGSG1622M,In Stock
+GERGGSG1622M,Out of Stock
 GERGGSG1622ML,In Stock
 GERGGSG1622S,In Stock
 GERGGSG910,In Stock
@@ -6027,7 +6027,7 @@ HCKVDS1.5-447,In Stock
 HCKVDS1.5-450,In Stock
 HCKVDS1.5-453,In Stock
 HCKVDS1.5-462,In Stock
-HCKVDS1.5-699,In Stock
+HCKVDS1.5-699,Out of Stock
 HCKVDS1.5D450,In Stock
 HCKVDS1.5D517,In Stock
 HCKVDS1.5D534,In Stock
@@ -6045,7 +6045,7 @@ HCKVDS2.5-538,In Stock
 HCKVDS2.5-561,In Stock
 HCKVDS2.5-569,In Stock
 HCKVDS2.5-584,In Stock
-HCKVDS2.5-699,In Stock
+HCKVDS2.5-699,Out of Stock
 HCKVDS2.5-706,In Stock
 HCKVDS4.0-561,In Stock
 HCKVDS4.0-590,In Stock
@@ -8195,7 +8195,7 @@ RF00028,In Stock
 RF00061,In Stock
 RF00078,In Stock
 RF00109,In Stock
-RF00133,In Stock
+RF00133,Out of Stock
 RF00139,In Stock
 RF00160,In Stock
 RF01590,In Stock
@@ -9279,7 +9279,7 @@ SS1HG3,In Stock
 SS1SG3,In Stock
 SS1SHG3,In Stock
 SS1SH70MHG3,In Stock
-SS1XHG3,In Stock
+SS1XHG3,Out of Stock
 SS10LW,In Stock
 SS100HSG2,In Stock
 SS11LW,In Stock
@@ -11197,7 +11197,7 @@ Z15TAC16,In Stock
 023-51,In Stock
 023-54,In Stock
 023-91,Out of Stock
-02408,In Stock
+02408,Out of Stock
 024100103,Out of Stock
 026-04,In Stock
 026-054,In Stock
