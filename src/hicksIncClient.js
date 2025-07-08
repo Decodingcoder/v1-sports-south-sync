@@ -1,4 +1,3 @@
-// src/hicksIncClient.js
 require('dotenv').config();
 const ftp   = require('basic-ftp');
 const fs    = require('fs');
@@ -31,24 +30,20 @@ async function fetchHicksInventory() {
       passive:  true,
     });
 
-    // navigate into the folder
     await client.cd('fh');
-
-    // download the correctly‑cased file
     const tmpPath = path.resolve(__dirname, '../tmp/hicks-full.csv');
     await client.downloadTo(tmpPath, 'full_V2.csv');
 
-    // read & parse
     const fileContent = fs.readFileSync(tmpPath, 'utf8');
     const records = parse(fileContent, {
       columns:          true,
       skip_empty_lines: true,
     });
 
-    // normalize to { sku, onHand }
+    // ——— HERE is the fix ———
     return records
       .map(row => ({
-        sku:    row.ItemNo,
+        sku:    row['Item number'],
         onHand: parseFloat(row['Quantity on hand'])
       }))
       .filter(r => r.sku);
