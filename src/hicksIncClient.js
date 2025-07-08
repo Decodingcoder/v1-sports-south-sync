@@ -22,7 +22,6 @@ async function fetchHicksInventory() {
   });
 
   try {
-    // 1) connect & login
     await client.access({
       host:     HICKS_FTP_HOST,
       user:     HICKS_FTP_USER,
@@ -32,31 +31,25 @@ async function fetchHicksInventory() {
       passive:  true,
     });
 
-    // 2) debug: list root directory
-    console.log('📂 Root files:', (await client.list()));
-
-    // 3) move into "From Hicks"
+    // navigate into the folder
     await client.cd('fh');
 
-    // 4) debug: list /fh contents
-    console.log('📂 /fh files:', (await client.list()));
-
-    // 5) download the CSV
+    // download the correctly‑cased file
     const tmpPath = path.resolve(__dirname, '../tmp/hicks-full.csv');
-    await client.downloadTo(tmpPath, 'full_v2.csv');
+    await client.downloadTo(tmpPath, 'full_V2.csv');
 
-    // 6) parse it
+    // read & parse
     const fileContent = fs.readFileSync(tmpPath, 'utf8');
     const records = parse(fileContent, {
-      columns:           true,
-      skip_empty_lines:  true
+      columns:          true,
+      skip_empty_lines: true,
     });
 
-    // 7) normalize for your sync.js
+    // normalize to { sku, onHand }
     return records
       .map(row => ({
         sku:    row.ItemNo,
-        onHand: parseFloat(row['Quantity on hand'] ?? row.QtyOnHand)
+        onHand: parseFloat(row['Quantity on hand'])
       }))
       .filter(r => r.sku);
 
