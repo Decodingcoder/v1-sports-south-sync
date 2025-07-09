@@ -12298,7 +12298,7 @@
   </product>
   <product>
     <ProductCode>BGQS10C-15</ProductCode>
-    <StockStatus>Out of Stock</StockStatus>
+    <StockStatus>In Stock</StockStatus>
   </product>
   <product>
     <ProductCode>BGQS10C-22</ProductCode>
@@ -12398,7 +12398,7 @@
   </product>
   <product>
     <ProductCode>BGTGC2</ProductCode>
-    <StockStatus>Out of Stock</StockStatus>
+    <StockStatus>In Stock</StockStatus>
   </product>
   <product>
     <ProductCode>BGTGRB2</ProductCode>
@@ -22426,11 +22426,11 @@
   </product>
   <product>
     <ProductCode>GL10243SSBRZ</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>GL10243SSMNTW</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>GL10270SSMNTW</ProductCode>
@@ -22450,7 +22450,7 @@
   </product>
   <product>
     <ProductCode>GL10308SSMNTW</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>GL1065PRCBRZ</ProductCode>
@@ -22458,11 +22458,11 @@
   </product>
   <product>
     <ProductCode>GL1065SSM-NTW</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>GL1065SSWHT</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>GL107MMSSMNTW</ProductCode>
