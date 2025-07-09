@@ -19742,7 +19742,7 @@
   </product>
   <product>
     <ProductCode>DRGF02</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>DRGF03</ProductCode>
@@ -27214,7 +27214,7 @@
   </product>
   <product>
     <ProductCode>LS35-10</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>LTSALT70S</ProductCode>
