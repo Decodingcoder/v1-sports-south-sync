@@ -12298,7 +12298,7 @@
   </product>
   <product>
     <ProductCode>BGQS10C-15</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>BGQS10C-22</ProductCode>
@@ -12398,7 +12398,7 @@
   </product>
   <product>
     <ProductCode>BGTGC2</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>BGTGRB2</ProductCode>
