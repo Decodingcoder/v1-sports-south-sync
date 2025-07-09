@@ -1930,7 +1930,7 @@
   </product>
   <product>
     <ProductCode>44910</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>44931</ProductCode>
@@ -18906,7 +18906,7 @@
   </product>
   <product>
     <ProductCode>DFMP70MH-C</ProductCode>
-    <StockStatus>Out of Stock</StockStatus>
+    <StockStatus>In Stock</StockStatus>
   </product>
   <product>
     <ProductCode>DFMP70MH-S</ProductCode>
@@ -24478,7 +24478,7 @@
   </product>
   <product>
     <ProductCode>HG-94210</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>HG-95704</ProductCode>
