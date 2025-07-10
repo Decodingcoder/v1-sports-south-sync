@@ -31402,7 +31402,7 @@
   </product>
   <product>
     <ProductCode>PPREG17</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>PPRM5561</ProductCode>
@@ -37798,7 +37798,7 @@
   </product>
   <product>
     <ProductCode>SUNPRF01</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>SUNPRF02</ProductCode>
