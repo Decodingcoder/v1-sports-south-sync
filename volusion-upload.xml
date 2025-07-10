@@ -17162,7 +17162,7 @@
   </product>
   <product>
     <ProductCode>CU301HGK</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>CU301K</ProductCode>
@@ -20698,7 +20698,7 @@
   </product>
   <product>
     <ProductCode>EXPS3-2TAN</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>EZ6PK</ProductCode>
@@ -39310,7 +39310,7 @@
   </product>
   <product>
     <ProductCode>TLD30IIA</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>TLD50IIA</ProductCode>
