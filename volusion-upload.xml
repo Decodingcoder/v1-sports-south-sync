@@ -8378,7 +8378,7 @@
   </product>
   <product>
     <ProductCode>AABSC-661MH</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>AABSC-721H</ProductCode>
@@ -8438,7 +8438,7 @@
   </product>
   <product>
     <ProductCode>AC1553AT</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>AC1595</ProductCode>
