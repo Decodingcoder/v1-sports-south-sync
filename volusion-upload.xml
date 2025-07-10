@@ -8666,7 +8666,7 @@
   </product>
   <product>
     <ProductCode>AHC300G2</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>AHC3066MSG2-2</ProductCode>
@@ -8770,6 +8770,14 @@
   </product>
   <product>
     <ProductCode>AK0031-FTPROW</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
+    <ProductCode>AK0031-K-CORE</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
+    <ProductCode>AK0031-K-PRO</ProductCode>
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
@@ -10118,7 +10126,7 @@
   </product>
   <product>
     <ProductCode>BBB-4RFF-04</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>BBB-4RFF-05</ProductCode>
@@ -11306,6 +11314,10 @@
   </product>
   <product>
     <ProductCode>BCLR661MH</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
+    <ProductCode>BCLR701M</ProductCode>
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
@@ -17478,7 +17490,7 @@
   </product>
   <product>
     <ProductCode>C08-04</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>C08-98</ProductCode>
@@ -17498,7 +17510,7 @@
   </product>
   <product>
     <ProductCode>C09-06</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>C09-11</ProductCode>
@@ -20317,6 +20329,18 @@
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
+    <ProductCode>DX6F</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
+    <ProductCode>DX7F</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
+    <ProductCode>DX8F</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
     <ProductCode>D001</ProductCode>
     <StockStatus>In Stock</StockStatus>
   </product>
@@ -20702,7 +20726,7 @@
   </product>
   <product>
     <ProductCode>EXPS3-2TAN</ProductCode>
-    <StockStatus>Out of Stock</StockStatus>
+    <StockStatus>In Stock</StockStatus>
   </product>
   <product>
     <ProductCode>EZ6PK</ProductCode>
@@ -28570,7 +28594,7 @@
   </product>
   <product>
     <ProductCode>MICKEYKIT</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>MICRO1CAST46C</ProductCode>
@@ -29833,6 +29857,10 @@
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
+    <ProductCode>NTL24</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
     <ProductCode>NT12H-4</ProductCode>
     <StockStatus>In Stock</StockStatus>
   </product>
@@ -30570,7 +30598,7 @@
   </product>
   <product>
     <ProductCode>PAM4CSMMFSS</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>PAM4MTSFSS</ProductCode>
@@ -32393,7 +32421,15 @@
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
+    <ProductCode>P94812</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
     <ProductCode>P94813</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
+    <ProductCode>P94818</ProductCode>
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
@@ -35237,6 +35273,10 @@
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
+    <ProductCode>SG132N-8</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
     <ProductCode>SG142-8TE</ProductCode>
     <StockStatus>In Stock</StockStatus>
   </product>
@@ -36098,7 +36138,7 @@
   </product>
   <product>
     <ProductCode>SN2000FG</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>SOC10000SW</ProductCode>
@@ -37921,6 +37961,10 @@
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
+    <ProductCode>S104PCP</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
     <ProductCode>S112-12H</ProductCode>
     <StockStatus>In Stock</StockStatus>
   </product>
@@ -37929,11 +37973,27 @@
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
+    <ProductCode>S1316PCP</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
+    <ProductCode>S1337PCP</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
     <ProductCode>S1338PCP</ProductCode>
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
+    <ProductCode>S1339PCP</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
     <ProductCode>S134CP</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
+    <ProductCode>S137CP</ProductCode>
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
@@ -37982,6 +38042,10 @@
   </product>
   <product>
     <ProductCode>S143-033</ProductCode>
+    <StockStatus>In Stock</StockStatus>
+  </product>
+  <product>
+    <ProductCode>S145-8PCP</ProductCode>
     <StockStatus>In Stock</StockStatus>
   </product>
   <product>
@@ -43150,11 +43214,11 @@
   </product>
   <product>
     <ProductCode>YAM-9-10-186</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>YAM-9-10-194J</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>YAM-9-10-208</ProductCode>
