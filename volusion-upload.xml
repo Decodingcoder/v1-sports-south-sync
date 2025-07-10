@@ -9478,7 +9478,7 @@
   </product>
   <product>
     <ProductCode>BAN01</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>BAN02</ProductCode>
@@ -32786,7 +32786,7 @@
   </product>
   <product>
     <ProductCode>REJH316-04PK3</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>REJH38-01PK3</ProductCode>
