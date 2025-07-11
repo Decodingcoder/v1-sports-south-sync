@@ -48742,7 +48742,7 @@
   </product>
   <product>
     <ProductCode>25AP</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>25AX200</ProductCode>
@@ -52402,7 +52402,7 @@
   </product>
   <product>
     <ProductCode>834UH</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>84-1</ProductCode>
