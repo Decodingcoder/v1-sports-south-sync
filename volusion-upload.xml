@@ -426,7 +426,7 @@
   </product>
   <product>
     <ProductCode>4150</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>4320</ProductCode>
