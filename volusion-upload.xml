@@ -32622,7 +32622,7 @@
   </product>
   <product>
     <ProductCode>P6517</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>P6548</ProductCode>
@@ -46158,7 +46158,7 @@
   </product>
   <product>
     <ProductCode>083-040</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>083-054</ProductCode>
