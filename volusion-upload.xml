@@ -14374,7 +14374,7 @@
   </product>
   <product>
     <ProductCode>BW4</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>BW4RR</ProductCode>
@@ -14674,7 +14674,7 @@
   </product>
   <product>
     <ProductCode>BYPPC3901</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>BYPPC3903</ProductCode>
