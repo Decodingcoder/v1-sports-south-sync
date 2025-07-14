@@ -6934,7 +6934,7 @@
   </product>
   <product>
     <ProductCode>2842475</ProductCode>
-    <StockStatus>Out of Stock</StockStatus>
+    <StockStatus>In Stock</StockStatus>
   </product>
   <product>
     <ProductCode>2844222</ProductCode>
@@ -39498,7 +39498,7 @@
   </product>
   <product>
     <ProductCode>THDM21</ProductCode>
-    <StockStatus>Out of Stock</StockStatus>
+    <StockStatus>In Stock</StockStatus>
   </product>
   <product>
     <ProductCode>THDRS28H</ProductCode>
