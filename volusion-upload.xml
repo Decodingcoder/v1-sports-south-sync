@@ -15286,7 +15286,7 @@
   </product>
   <product>
     <ProductCode>CB-PZ38-08</ProductCode>
-    <StockStatus>In Stock</StockStatus>
+    <StockStatus>Out of Stock</StockStatus>
   </product>
   <product>
     <ProductCode>CB-11</ProductCode>
@@ -28274,7 +28274,7 @@
   </product>
   <product>
     <ProductCode>MA2277D</ProductCode>
-    <StockStatus>Out of Stock</StockStatus>
+    <StockStatus>In Stock</StockStatus>
   </product>
   <product>
     <ProductCode>MA2279</ProductCode>
