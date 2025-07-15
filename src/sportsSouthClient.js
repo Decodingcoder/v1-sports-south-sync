@@ -3,7 +3,7 @@
 // ──────────────────────────────────────────────
 require('dotenv').config();
 const xml2js = require('xml2js');
-const soap   = require('soap');          // ⬅️  use node‑soap here
+const soap   = require('soap'); // using node-soap
 
 const {
   SPORTS_SOUTH_USERNAME,
@@ -18,9 +18,16 @@ const {
 async function fetchSportsSouthInventory(sinceIso) {
   const wsdl = 'https://webservices.theshootingwarehouse.com/smart/inventory.asmx?WSDL';
 
-  // node‑soap has createClientAsync
+  // Add HTTP Basic Auth to WSDL request
   const client = await soap.createClientAsync(wsdl, {
-    wsdl_options: { rejectUnauthorized: false }
+    wsdl_headers: {
+      Authorization: 'Basic ' + Buffer
+        .from(`${SPORTS_SOUTH_USERNAME}:${SPORTS_SOUTH_PASSWORD}`)
+        .toString('base64')
+    },
+    wsdl_options: {
+      rejectUnauthorized: false
+    }
   });
 
   const args = {
@@ -31,18 +38,16 @@ async function fetchSportsSouthInventory(sinceIso) {
     SinceDateTime:  sinceIso,
   };
 
-  // node‑soap automatically adds “Async” helpers for each method
-  const [ result ] = await client.IncrementalOnhandUpdateAsync(args);
+  const [result] = await client.IncrementalOnhandUpdateAsync(args);
   const rawXml = result.IncrementalOnhandUpdateResult;
 
-  // parse XML ➝ JSON
   const parsed = await xml2js.parseStringPromise(rawXml, { explicitArray: false });
-  const items  = parsed?.NewDataSet?.Inventory;
+  const items = parsed?.NewDataSet?.Inventory;
   if (!items) return [];
 
   const list = Array.isArray(items) ? items : [items];
   return list.map(it => ({
-    ItemNo:   it.ITEMNO,
+    ItemNo: it.ITEMNO,
     Quantity: Number(it.ONHAND)
   }));
 }
