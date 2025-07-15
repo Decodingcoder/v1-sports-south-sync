@@ -1,41 +1,63 @@
+// ────────────────────────────────────────────────────────────────
 // src/sportsSouthClient.js
+// Fetch & parse Sports South inventory (IncrementalOnhandUpdate)
+// ────────────────────────────────────────────────────────────────
 require('dotenv').config();
-const path = require('path');
-const soap = require('strong-soap').soap;
+const xml2js = require('xml2js');
+const soap   = require('strong-soap').soap;
 
+const {
+  SPORTS_SOUTH_USERNAME,
+  SPORTS_SOUTH_PASSWORD,
+  SPORTS_SOUTH_CUSTOMER_NUMBER,
+  SPORTS_SOUTH_SOURCE,
+} = process.env;
+
+/**
+ * Pull only the **delta** since the timestamp you pass in.
+ * @param {string} sinceIso   e.g. "1990-01-01T00:00:00Z"  (full dump)
+ * @returns {Promise<Array<{ ItemNo:string, Quantity:number }>>}
+ */
 async function fetchSportsSouthInventory(sinceIso) {
-  const {
-    SPORTS_SOUTH_USERNAME,
-    SPORTS_SOUTH_PASSWORD,
-    SPORTS_SOUTH_CUSTOMER_NUMBER,
-    SPORTS_SOUTH_SOURCE,
-  } = process.env;
+  const wsdl = 'https://webservices.theshootingwarehouse.com/smart/inventory.asmx?WSDL';
 
-  return new Promise((resolve, reject) => {
-    const url = 'https://webservices.theshootingwarehouse.com/smart/inventory.asmx?WSDL';
+  // wrap strong‑soap’s callback API in a Promise:
+  const client = await new Promise((res, rej) =>
+    soap.createClient(wsdl, {}, (err, c) => (err ? rej(err) : res(c)))
+  );
 
-    soap.createClient(url, {}, (err, client) => {
-      if (err) return reject(err);
+  // strong‑soap wants “IncrementalOnhandUpdate” exactly as below ⤵
+  const args = {
+    UserName:       SPORTS_SOUTH_USERNAME,
+    Password:       SPORTS_SOUTH_PASSWORD,
+    CustomerNumber: SPORTS_SOUTH_CUSTOMER_NUMBER,
+    Source:         SPORTS_SOUTH_SOURCE,
+    SinceDateTime:  sinceIso,
+  };
 
-      const requestArgs = {
-        ID: SPORTS_SOUTH_USERNAME,
-        Password: SPORTS_SOUTH_PASSWORD,
-        CustomerNo: SPORTS_SOUTH_CUSTOMER_NUMBER,
-        Source: SPORTS_SOUTH_SOURCE,
-        UpdateDate: sinceIso, // e.g. '1990-01-01T00:00:00Z'
-        InventoryType: 'A',   // A = All, D = Discontinued, N = New, U = Updated
-      };
+  const rawXml = await new Promise((res, rej) =>
+    client.IncrementalOnhandUpdate(args, (err, result) =>
+      err ? rej(err) : res(result.IncrementalOnhandUpdateResult)
+    )
+  );
 
-      client.GetInventory(requestArgs, (err, result) => {
-        if (err) return reject(err);
+  // rawXml is a plain XML string.  Parse it:
+  const parsed = await xml2js.parseStringPromise(rawXml, { explicitArray: false });
 
-        const rawXml = result.GetInventoryResult;
-        // This response is a raw XML string. You’ll need to parse it separately
-        console.log('📩 Raw response:', rawXml);
-        resolve([]); // We'll parse this in the next step.
-      });
-    });
-  });
+  /** 
+   * Path is:
+   * parsed.NewDataSet.Inventory   ⟶ can be single object **or** array
+   */
+  const items = parsed?.NewDataSet?.Inventory;
+  if (!items) return [];
+
+  const list = Array.isArray(items) ? items : [items];
+
+  // Normalise into { ItemNo, Quantity }
+  return list.map(it => ({
+    ItemNo:   it.ITEMNO,
+    Quantity: Number(it.ONHAND),
+  }));
 }
 
 module.exports = { fetchSportsSouthInventory };
