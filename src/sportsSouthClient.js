@@ -22,7 +22,7 @@ async function fetchSportsSouthInventory(sinceIso) {
   const wsdl = 'https://webservices.theshootingwarehouse.com/smart/inventory.asmx?WSDL';
 
   // wrap strong‑soap’s callback API in a Promise:
-  const client = await soap.createClientAsync(wsdlUrl, {
+  const client = await soap.createClientAsync(wsdl, {
     wsdl_options: {
       rejectUnauthorized: false
         }
