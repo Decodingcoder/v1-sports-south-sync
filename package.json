@@ -17,7 +17,7 @@
   "form-data": "^4.0.3",
   "xml2js": "^0.6.2",
   "xmlbuilder2": "^3.0.2",
-  "strong-soap": "^4.1.13"
+  "strong-soap": "^1.20.0"
 },
   "description": ""
 }
