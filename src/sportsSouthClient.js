@@ -1,9 +1,7 @@
 // src/sportsSouthClient.js
 require('dotenv').config();
-const axios = require('axios');
-const xml2js = require('xml2js');
+const soap = require('strong-soap').soap;
 
-const WS_BASE = 'http://webservices.theshootingwarehouse.com/smart';
 const {
   SPORTS_SOUTH_USERNAME,
   SPORTS_SOUTH_PASSWORD,
@@ -11,42 +9,52 @@ const {
   SPORTS_SOUTH_SOURCE
 } = process.env;
 
+const INVENTORY_WSDL_URL = 'https://webservices.theshootingwarehouse.com/smart/inventory.asmx?WSDL';
+
 async function fetchSportsSouthInventory(sinceIso = '1990-01-01T00:00:00Z') {
-  if (!SPORTS_SOUTH_USERNAME || !SPORTS_SOUTH_PASSWORD || !SPORTS_SOUTH_CUSTOMER_NUMBER || !SPORTS_SOUTH_SOURCE) {
-    throw new Error('❌ Missing one or more required Sports South credentials in environment variables.');
-  }
+  return new Promise((resolve, reject) => {
+    soap.createClient(INVENTORY_WSDL_URL, {}, (err, client) => {
+      if (err) {
+        console.error('❌ SOAP client error:', err.message);
+        return reject(err);
+      }
 
-  const resp = await axios.get(`${WS_BASE}/inventory.asmx/IncrementalOnhandUpdate`, {
-    params: {
-      UserName:       SPORTS_SOUTH_USERNAME,
-      Password:       SPORTS_SOUTH_PASSWORD,
-      CustomerNumber: SPORTS_SOUTH_CUSTOMER_NUMBER,
-      Source:         SPORTS_SOUTH_SOURCE,
-      SinceDateTime:  sinceIso
-    },
-    headers: { 'Accept': 'text/xml' }
+      const args = {
+        userName: SPORTS_SOUTH_USERNAME,
+        password: SPORTS_SOUTH_PASSWORD,
+        customerNumber: SPORTS_SOUTH_CUSTOMER_NUMBER,
+        source: SPORTS_SOUTH_SOURCE,
+        lastUpdateDate: sinceIso
+      };
+
+      console.log('📡 Calling Sports South GetInventory with args:', args);
+
+      client.GetInventory(args, (err, result) => {
+        if (err) {
+          console.error('❌ Sports South inventory fetch failed:', err.message);
+          return reject(err);
+        }
+
+        const rawXml = result.GetInventoryResult;
+        console.log('📩 Raw XML received');
+
+        // Parse embedded XML string
+        const parseString = require('xml2js').parseString;
+        parseString(rawXml, { explicitArray: false }, (err, parsed) => {
+          if (err) {
+            console.error('❌ Failed to parse inventory XML:', err.message);
+            return reject(err);
+          }
+
+          const items = parsed?.NewDataSet?.Table;
+          const normalized = Array.isArray(items) ? items : items ? [items] : [];
+
+          console.log(`✅ Parsed ${normalized.length} Sports South items`);
+          resolve(normalized);
+        });
+      });
+    });
   });
-
-  // Debug log
-  console.log('📩 Raw response:', resp.data);
-
-  if (resp.data.includes('Authentication Failed')) {
-    throw new Error('❌ Sports South API authentication failed. Check your username/password/customer number/source values.');
-  }
-
-  // Attempt to parse full XML (even if wrapped in <string>)
-  const parsed = await xml2js.parseStringPromise(resp.data, { explicitArray: false });
-
-  const rawXml = parsed?.string?._ ?? '';
-  if (!rawXml) {
-    console.warn('⚠️ No inner XML returned in <string> wrapper.');
-    return [];
-  }
-
-  const unwrapped = await xml2js.parseStringPromise(rawXml, { explicitArray: false });
-  const items = unwrapped?.NewDataSet?.Table1;
-
-  return items ? (Array.isArray(items) ? items : [items]) : [];
 }
 
 module.exports = { fetchSportsSouthInventory };
