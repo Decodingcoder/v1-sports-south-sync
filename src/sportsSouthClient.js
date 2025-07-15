@@ -22,9 +22,11 @@ async function fetchSportsSouthInventory(sinceIso) {
   const wsdl = 'https://webservices.theshootingwarehouse.com/smart/inventory.asmx?WSDL';
 
   // wrap strong‑soap’s callback API in a Promise:
-  const client = await new Promise((res, rej) =>
-    soap.createClient(wsdl, {}, (err, c) => (err ? rej(err) : res(c)))
-  );
+  const client = await soap.createClientAsync(wsdlUrl, {
+    wsdl_options: {
+      rejectUnauthorized: false
+        }
+      });
 
   // strong‑soap wants “IncrementalOnhandUpdate” exactly as below ⤵
   const args = {
