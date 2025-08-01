@@ -16,7 +16,7 @@ const {
  * Pull the delta inventory since `sinceIso`
  */
 async function fetchSportsSouthInventory(sinceIso) {
-  const wsdl = 'https://webservices.theshootingwarehouse.com/smart/inventory.asmx?WSDL';
+  const wsdl = 'http://webservices.theshootingwarehouse.com/smart/inventory.asmx?WSDL'; 
 
   // Add HTTP Basic Auth to WSDL request
   const client = await soap.createClientAsync(wsdl, {
