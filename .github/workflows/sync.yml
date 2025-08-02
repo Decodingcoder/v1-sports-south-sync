@@ -33,6 +33,9 @@ jobs:
           SPORTS_SOUTH_PASSWORD: ${{ secrets.SPORTS_SOUTH_PASSWORD }}
           SPORTS_SOUTH_CUSTOMER_NUMBER: ${{ secrets.SPORTS_SOUTH_CUSTOMER_NUMBER }}
           SPORTS_SOUTH_SOURCE: ${{ secrets.SPORTS_SOUTH_SOURCE }}
+          VOLUSION_STORE_URL: ${{ secrets.VOLUSION_STORE_URL }}
+          VOLUSION_EMAIL: ${{ secrets.VOLUSION_EMAIL }}
+          VOLUSION_ENCRYPTED_PASSWORD: ${{ secrets.VOLUSION_ENCRYPTED_PASSWORD }}
           HICKS_FTP_HOST: ${{ secrets.HICKS_FTP_HOST }}
           HICKS_FTP_USER: ${{ secrets.HICKS_FTP_USER }}
           HICKS_FTP_PASS: ${{ secrets.HICKS_FTP_PASS }}
