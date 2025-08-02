@@ -3,7 +3,7 @@
 // ──────────────────────────────────────────────
 require('dotenv').config();
 const xml2js = require('xml2js');
-const soap   = require('soap'); // using node-soap
+const soap   = require('soap');
 
 const {
   SPORTS_SOUTH_USERNAME,
@@ -16,19 +16,21 @@ const {
  * Pull the delta inventory since `sinceIso`
  */
 async function fetchSportsSouthInventory(sinceIso) {
-  const wsdl = 'http://webservices.theshootingwarehouse.com/smart/inventory.asmx?WSDL'; 
+  const wsdl = 'http://webservices.theshootingwarehouse.com/smart/inventory.asmx?WSDL';
 
-  // Add HTTP Basic Auth to WSDL request
+  // Use HTTP Basic Auth for WSDL file itself
   const client = await soap.createClientAsync(wsdl, {
-    wsdl_headers: {
-      Authorization: 'Basic ' + Buffer
-        .from(`${SPORTS_SOUTH_USERNAME}:${SPORTS_SOUTH_PASSWORD}`)
-        .toString('base64')
-    },
     wsdl_options: {
-      rejectUnauthorized: false
-    }
+      rejectUnauthorized: false,
+      auth: `${SPORTS_SOUTH_USERNAME}:${SPORTS_SOUTH_PASSWORD}`,
+    },
   });
+
+  console.log('Username:', process.env.SPORTS_SOUTH_USERNAME)
+console.log('Password:', process.env.SPORTS_SOUTH_PASSWORD)
+console.log('CustomerNumber:', process.env.SPORTS_SOUTH_CUSTOMER_NUMBER)
+console.log('Source:', process.env.SPORTS_SOUTH_SOURCE)
+
 
   const args = {
     UserName:       SPORTS_SOUTH_USERNAME,
@@ -43,6 +45,9 @@ async function fetchSportsSouthInventory(sinceIso) {
 
   const parsed = await xml2js.parseStringPromise(rawXml, { explicitArray: false });
   const items = parsed?.NewDataSet?.Inventory;
+
+  console.log('Raw XML result from Sports South:\n', rawXml);
+
   if (!items) return [];
 
   const list = Array.isArray(items) ? items : [items];
