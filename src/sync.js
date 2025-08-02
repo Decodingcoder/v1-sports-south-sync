@@ -1,6 +1,7 @@
 // src/sync.js
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 require('dotenv').config();
+const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 
@@ -53,9 +54,43 @@ if (fs.existsSync(lastSyncPath)) {
     StockStatus: qty > 0 ? 'In Stock' : 'Out of Stock'
   }));
 
+
+  // 🚨 NEW: Skip upload if nothing to update
+  if (updates.length === 0) {
+    console.log('⚠️ No inventory updates to upload. Skipping Volusion push.');
+    return;
+  }
+  
+
   // 5) Write CSV
   const xmlPath = path.resolve(__dirname, '../volusion-upload.xml');
   await generateVolusionXML(updates, xmlPath);
+
+  // 5.5) Upload XML to Volusion (NEW ADDITION)
+console.log('📤 Uploading XML to Volusion...');
+
+const xmlString = fs.readFileSync(xmlPath, 'utf8');
+const volusionUploadUrl = `${process.env.VOLUSION_STORE_URL}/net/WebService.aspx`;
+
+const payload = new URLSearchParams({
+  EncryptedPassword: process.env.VOLUSION_ENCRYPTED_PASSWORD,
+  Email: process.env.VOLUSION_EMAIL,
+  InventoryUpdate: xmlString,
+});
+
+try {
+  const response = await axios.post(volusionUploadUrl, payload.toString(), {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    timeout: 10000,
+  });
+
+  console.log('✅ Volusion upload successful:', response.data);
+} catch (error) {
+  console.error('❌ Volusion upload failed:', error.message);
+}
+
 
   // 6) Update lastSync
   fs.writeFileSync(lastSyncPath,
