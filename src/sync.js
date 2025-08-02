@@ -70,6 +70,7 @@ if (fs.existsSync(lastSyncPath)) {
 console.log('📤 Uploading XML to Volusion...');
 
 const xmlString = fs.readFileSync(xmlPath, 'utf8');
+  console.log('🧾 Final XML Preview:\n', xmlString.slice(0, 1000) + '...');
 const volusionUploadUrl = `${process.env.VOLUSION_STORE_URL}/net/WebService.aspx`;
 
 const payload = new URLSearchParams({
